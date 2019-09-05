@@ -227,6 +227,7 @@ function setupBot() {
     /* Exactly "/a" or "/m" */
     AMBot.onText(/\/[a|m]$/, (msg, match) => {
         // TODO: shows the user how to use commands
+        AMBot.sendMessage(msg.chat.id, msgs.COMMAND_GUIDE, {parse_mode: "Markdown"});
     });
 
     /* Send message to angel*/
@@ -416,7 +417,12 @@ function deregister(id) {
 /* Displays the status of their angel/mortal */
 function status(msg, match) {
     var senderId = msg.chat.id;
-    var sender = PersonUtil.getPersonByTelegramId(senderId);
+    let sender;
+    try {
+        sender = PersonUtil.getPersonByTelegramId(senderId);
+    } catch (e) {
+        sendMessage(AMBot, senderId, msgs.PLEASE_REGISTER);
+    }
 
     var angel = cachedData[sender.angel];
     var mortal = cachedData[sender.mortal];
