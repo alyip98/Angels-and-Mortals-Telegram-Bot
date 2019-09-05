@@ -7,3 +7,4 @@ data.csv
 .idea/jsLibraryMappings.xml
 .idea/workspace.xml
 node_modules/
+.idea/

@@ -371,6 +371,7 @@ async function register(msg, match) {
     var obj = PersonUtil.getPersonByRoom(decoded);
     if (!obj) {
         console.log("Error: Couldn't find Person with room: ", decoded);
+        sendMessage(AMBot, senderId, msgs.ERROR_INVALID_CODE);
         return;
     }
 
