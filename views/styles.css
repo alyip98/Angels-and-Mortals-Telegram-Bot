@@ -1,0 +1,33 @@
+*{
+	padding:8px;
+	border-collapse: collapse;
+	margin:none;
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+
+.Panthera {
+	background-color: #f66;
+}
+.Chelonia {
+	background-color: #66f;
+}
+.Strix {
+	background-color: #ff6;
+}
+.Aonyx {
+	background-color: #999;
+}
+.Rusa {
+	background-color: #3a3;
+}
+
+.register-true {
+	background-color: green;
+}
+
+.register-false {
+	background-color: yellow;
+}

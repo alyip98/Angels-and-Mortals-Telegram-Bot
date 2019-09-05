@@ -1,0 +1,57 @@
+<script src="person.js">
+</script>
+<script>
+function formatData(obj) {
+	var headers = "Code|Name|Room|Mortal".split("|");
+	var html = '  <link rel="stylesheet" type="text/css" href="table.css">';
+	html += "<table><tr>";
+	for (var i in headers) {
+		//html += "<th>" + headers[i] + "</th>";
+	}
+	html += "</tr>";
+	var n = Object.keys(obj).length;
+	var current = 0;
+	while (n > 0) {
+		var person = Person.fromObject(obj[current]);
+		html += "<tr>";
+		//html += "<td>" + person.uid + "</td>";
+		html += "<td class='left'>" + person.name + "<br/>" +
+		person.block + person.room + "<br/></td>";
+		//html += "<td>" + person.registered + "</td>";
+		// html += "<td>" + person.name + "</td>";
+		// html += "<td>" + person.block + person.room + "</td>";
+		//html += "<td>" + person.intro + "</td>";
+		//html += "<td>" + formatHouse(person.house) + "</td>";
+		// html += "<td>" + person.mortal + "</td>";
+		// html += "<td>" + obj[person.mortal].name + "</td>";
+		html += "<td class='center'>" + obj[person.mortal].name + "<br/>" + obj[person.mortal].block + obj[person.mortal].room + "</td>";
+		html += "<td class='right'>" + obj[person.mortal].intro + "</td>";
+		//html += "<td>" + formatHouse(obj[person.mortal].house) + "</td>";
+		html += "</tr>";
+		current = person.mortal;
+		n--;
+	}
+	html += "</table>";
+	return html;
+}
+
+function display() {
+	var data = JSON.parse(this.response);
+	console.log(data);
+	document.write(formatData(data));
+}
+
+function init() {
+	getData();
+}
+
+function getData() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", display);
+	oReq.open("GET", "http://localhost:8000/data");
+	oReq.send();
+}
+
+
+window.onload = init;
+</script>

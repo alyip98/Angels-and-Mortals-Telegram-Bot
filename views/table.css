@@ -1,0 +1,54 @@
+*{
+	margin:none;
+}
+
+table {
+	border-collapse: separate;
+	-webkit-border-vertical-spacing: 20px;
+}
+
+td {
+	// border: 1px solid black;
+	height: 180px;
+	width: 250px;
+	background-attachment:center;
+	background-image: url(background.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.mortal {
+	text-decoration: underline;
+	
+}
+
+.code {
+	font-size: 12;
+}
+
+.right {
+	font-size: 12;
+}
+
+tr {
+	page-break-inside: avoid;
+}
+
+.Panthera {
+	background-color: #f66;
+}
+.Chelonia {
+	background-color: #66f;
+}
+.Strix {
+	background-color: #ff6;
+}
+.Aonyx {
+	background-color: #999;
+}
+.Rusa {
+	background-color: #3a3;
+}

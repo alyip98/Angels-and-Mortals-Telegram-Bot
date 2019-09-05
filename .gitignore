@@ -1,0 +1,9 @@
+pairings/
+*.tsv
+out.txt
+*.pdf
+.env
+data.csv
+.idea/jsLibraryMappings.xml
+.idea/workspace.xml
+node_modules/

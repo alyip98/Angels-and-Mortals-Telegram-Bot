@@ -1,0 +1,82 @@
+<script src="person.js">
+</script>
+<script>
+var sorted = false;
+function formatData(obj) {
+	function sort(o) {
+		function key(p) {
+			return p.block + p.room;
+		}
+		
+		var arr = Object.values(o);
+		for (var i = 0; i < arr.length; i++) {
+			for (var j = 0; j < arr.length - i; j++) {
+				if (key(arr[i]) < key(arr[j])) {
+					tmp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmp;
+				}
+			}
+		}
+		return arr;
+	}
+	
+	function formatPerson(person) {	
+		var out = "";
+		out += "<tr>";
+		out += "<td class='left'>" + person.name + "<br/>" +
+		person.block + person.room + "<br/>";
+		out += "<span class='code'>" + person.generateCode() + "</span></td>";
+		out += "<td class='center'><span class='mortal'> Mortal </span><br/>";
+		out += obj[person.mortal].name + "<br/>" + obj[person.mortal].block + obj[person.mortal].room + "</td>";
+		out += "<td class='right'>" + obj[person.mortal].intro + "</td>";
+		out += "</tr>";
+		return out;
+	}
+	var headers = "Code|Name|Room|Mortal".split("|");
+	var html = '  <link rel="stylesheet" type="text/css" href="table.css">';
+	html += "<table><tr>";
+	for (var i in headers) {
+		//html += "<th>" + headers[i] + "</th>";
+	}
+	html += "</tr>";
+	var n = Object.keys(obj).length;
+	var current = 0;
+	if (sorted) {
+		var arr = sort(obj);
+		for (var i in arr) {
+			var person = Person.fromObject(arr[i]);
+			html += formatPerson(person);
+		}
+	} else {
+		while (n > 0) {
+			var person = Person.fromObject(obj[current]);
+			html += formatPerson(person);
+			current = person.mortal;
+			n--;
+		}
+	}
+	html += "</table>";
+	return html;
+}
+
+function display() {
+	var data = JSON.parse(this.response);
+	console.log(data);
+	document.write(formatData(data));
+}
+
+function init() {
+	getData();
+}
+
+function getData() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", display);
+	oReq.open("GET", "http://localhost:8000/data");
+	oReq.send();
+}
+
+
+window.onload = init;
+</script>
