@@ -486,7 +486,7 @@ function sendChat(msg, match, relation) {
         return;
     }
 
-    sendMessage(AMBot, msg.chat.id, "Sent to " + relation.serialized);
+    // sendMessage(AMBot, msg.chat.id, "Sent to " + relation.serialized);
     sendMessage(AMBot, target.telegramId, relation.other.name + ": " + match[1]);
     console.log(sender.display() + " sent a message to their " + relation.serialized);
 }
