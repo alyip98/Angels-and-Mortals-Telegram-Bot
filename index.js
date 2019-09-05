@@ -83,7 +83,7 @@ async function init() {
     await setupServer();
     setupBot();
 
-    sendMarkdownMessage(UtilBot, me, `Bot started at ${Date.now()}`);
+    sendMarkdownMessage(UtilBot, me, `Bot started at ${Date()}`);
 }
 
 /* Setup CLI */
