@@ -17,8 +17,8 @@ const msgs = require('./src/bot_messages.js');
 const storage = require('node-persist');
 const Codec = require("./src/util/encode");
 const AMBot = new TelegramBot(process.env.botToken, {polling: true});
-
 const UtilBot = new TelegramBot(process.env.utilToken, {polling: true});
+const me = process.env.me;
 
 const PersonUtil = {
     /* Finds the Person associated with that telegram ID */
@@ -82,6 +82,8 @@ async function init() {
     }
     await setupServer();
     setupBot();
+
+    sendMarkdownMessage(UtilBot, me, `Bot started at ${Date.now()}`);
 }
 
 /* Setup CLI */
